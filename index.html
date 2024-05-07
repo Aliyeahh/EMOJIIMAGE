@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            transition: background-color 0.5s ease;
+            flex-direction: column;
+        }
+
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        img {
+            height: 30vh;
+            max-width: 30vw; 
+            height: auto; 
+        }
+
+        .toggle {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: red;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Didot', serif;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <audio id="happyMusic" src="yehey.mp3" autoplay loop></audio>
+
+    <audio id="sadMusic" src="sad.mp3" loop></audio>
+
+    <button class="toggle" onclick="toggleImage()">&#10084;</button>
+
+    <div class="image-container">
+        <h1 id="heading">Tap the heart button to switch the emoji</h1>
+        <img id="Image" src="happy.png" alt="happy">
+    </div>
+
+    <script>
+        function toggleImage() {
+            var image = document.getElementById('Image');
+            var body = document.body;
+            var heading = document.getElementById('heading');
+            var happyMusic = document.getElementById('happyMusic');
+            var sadMusic = document.getElementById('sadMusic');
+
+            if (image.src.includes('happy.png')) {
+                image.src = 'sad.png';
+                body.style.backgroundColor = '#6aacfc';
+                heading.innerText = 'The cat is sad. Tap the heart button to switch emoji';
+                happyMusic.pause();
+                sadMusic.play();
+            } else {
+                image.src = 'happy.png';
+                body.style.backgroundColor = 'yellow'; 
+                heading.innerText = 'The cat is happy. Tap the heart button to switch emoji';
+                sadMusic.pause(); // Pause sad music
+                happyMusic.play(); // Play happy music
+            }
+        }
+    </script>
+
+</body>
+</html>
